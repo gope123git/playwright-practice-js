@@ -29,28 +29,72 @@ export default defineConfig({
             resultsDir: 'allure-results'
         }]
     ],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    headless: false,
-    baseURL:process.env.BASE_URL,
-    screenshot: 'only-on-failure',
-    trace: 'retain-on-failure',
-    actionTimeout: 10_000,
-    navigationTimeout: 20_000,
 
-    permissions: ["geolocation"],
-    geolocation: {
-      latitude: 30.7333,
-      longitude: 76.7794
+
+use: {
+  headless: !!process.env.CI,
+  baseURL: process.env.BASE_URL,
+  viewport: process.env.CI
+    ? { width: 1440, height: 900 }
+    : null,
+  screenshot: 'only-on-failure',
+  trace: 'retain-on-failure',
+  actionTimeout: 10_000,
+  navigationTimeout: 20_000,
+  permissions: ['geolocation'],
+  geolocation: {
+    latitude: 30.7333,
+    longitude: 76.7794
+  }
+},
+
+projects: [
+  {
+    name: 'chromium',
+    use: {
+      browserName: 'chromium',
+      ...(process.env.CI
+        ? {}
+        : {
+            launchOptions: {
+              slowMo: 1000,
+              args: ['--start-maximized']
+            }
+          })
     }
-  },
+  }
+],
 
 
-  timeout: 60_000,  // per test timeout
 
-  expect: {
-    timeout: 5_000
-  },
+
+
+
+
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
+  // use: {
+  //   // headless: false,
+  //   headless: !!process.env.CI,
+  //   baseURL:process.env.BASE_URL,
+  //   screenshot: 'only-on-failure',
+  //   trace: 'retain-on-failure',
+  //   actionTimeout: 10_000,
+  //   navigationTimeout: 20_000,
+
+  //   permissions: ["geolocation"],
+  //   geolocation: {
+  //     latitude: 30.7333,
+  //     longitude: 76.7794
+  //   }
+  // },
+
+
+  // timeout: 60_000,  // per test timeout
+
+  // expect: {
+  //   timeout: 5_000
+  // },
 
   // globalTimeout: 600_000,
 
@@ -73,19 +117,19 @@ export default defineConfig({
 // ],
 
 
-projects: [
-  {
-    name: 'chromium',
-    use: {
-      browserName: 'chromium',
-      viewport: null,
-      launchOptions: {
-        slowMo: 1000,
-        args: ['--start-maximized'],
-      },
-    },
-  },
-],
+// projects: [
+//   {
+//     name: 'chromium',
+//     use: {
+//       browserName: 'chromium',
+//       viewport: null,
+//       launchOptions: {
+//         slowMo: 1000,
+//         args: ['--start-maximized'],
+//       },
+//     },
+//   },
+// ],
 
 
 

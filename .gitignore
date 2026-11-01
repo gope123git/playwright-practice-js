@@ -1,13 +1,29 @@
 
-# Playwright
+# Environment variables and secrets
 .env
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+.env.*
+!.env.example
 
-# Allure reports
+# Dependencies
+node_modules/
+
+# Playwright generated files
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# Allure generated reports
 allure-report/
 allure-results/
+
+# Authentication state
+state.json
+
+# Local logs
+log/
+local.log
+
+# macOS
+.DS_Store
