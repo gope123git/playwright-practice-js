@@ -1,0 +1,23 @@
+{
+  "name": "playwright-prod",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm update browserstack-node-sdk"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "allure": "^3.22.1",
+    "allure-playwright": "^3.14.0",
+    "browserstack-node-sdk": "^1.76.1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.8"
+  }
+}
