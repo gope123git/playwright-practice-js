@@ -133,7 +133,7 @@ test('Modify LocalGaadi API request headers', async ({ page }) => {
 
 
 
-test.only('Mock a 500 error from public drivers API', async ({ page }) => {
+test('Mock a 500 error from public drivers API', async ({ page }) => {
   let intercepted = false;
 
   await page.route('**/rest/v1/rpc/public_drivers', async (route) => {

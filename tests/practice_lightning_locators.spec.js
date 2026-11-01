@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-test.describe.only('Lightning Locators practice',() => {
+test.describe('Lightning Locators practice',() => {
 
     test.beforeEach(async({page})=>{
             await page.goto('https://area-saggy-grooving.ngrok-free.dev/');
